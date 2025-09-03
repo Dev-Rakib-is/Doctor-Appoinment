@@ -1,20 +1,95 @@
-import Darkmode from "../components/ui/Darkmode"
+import { useEffect, useState } from "react";
+import Darkmode from "../components/ui/Darkmode";
+import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+import { AlignCenter, Search, X } from "lucide-react";
 
 const Header = () => {
-  return (
-    <header className=''>
-        <div className="flex justify-between px-4 items-center">
-            {/* logo  */}
-            <div className=" py-6 ">
-                <h5 className="text-green-700 font-bold text-2xl">Health care</h5>
-                <p className="text-[10px] tracking-[1px]">Doctor Appointment</p>
-            </div>
-            <div className="">
-                <Darkmode/>
-            </div>
-        </div>
-    </header>
-  )
-}
+  const [search, setsearch] = useState("");
+  //   Navigate Stat
+  const navigate = useNavigate();
+  const [openMenu, setOpenMenu] = useState("");
 
-export default Header
+  // Scroll off when aside present
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => (document.body.style.overflow = "auto");
+  }, [openMenu]);
+
+  return (
+    <div>
+      <header>
+        <div className="flex justify-between px-4 items-center">
+          {/* logo  */}
+          <Link to={"/"} className=" py-6 ">
+            <h5 className="text-green-700 font-bold text-2xl">Health care</h5>
+            <p className="text-[10px] tracking-[1px]">Doctor Appointment</p>
+          </Link>
+          <div className="flex items-center gap-3">
+            {/* search && search Button */}
+            <div className=" hidden md:flex items-center">
+              <input
+                type="text"
+                value={search}
+                placeholder="Search"
+                onChange={(e) => setsearch(e.target.value)}
+                className="border w-[180px] h-[35px] rounded px-2 border-black/30 shadow"
+              />
+              <button
+                className="bg-gray-200 h-[35px] rounded w-[40px] flex items-center justify-center cursor-pointer"
+                type="button"
+              >
+                <Search />
+              </button>
+            </div>
+            <Darkmode />
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setOpenMenu(!openMenu)}
+              className="block md:hidden"
+            >
+              {openMenu ? <X size={32} /> : <AlignCenter size={32} />}
+            </motion.button>
+          </div>
+        </div>
+      </header>
+      <AnimatePresence>
+        {openMenu && (
+          <motion.aside
+            initial={{ x: "-100%" }}
+            animate={{ x: "0" }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: "0.3", ease: "easeInOut" }}
+            className="fixed top-24 h-full w-10/12 p-8 bg-gray-300"
+          >
+            <h3 className="text-2xl text-black dark:text-white font-semibold pb-6">
+              Dashboard
+            </h3>
+            <ul className="space-y-2">
+              <li className="text-black hover:bg-gray-700 p-2 rounded">
+                <Link to={ "/patient/dashboard"}>Home</Link>
+              </li>
+              <li className="text-black hover:bg-gray-700 p-2 rounded">
+                <Link to={"/doctors"}>Doctors</Link>
+              </li>
+              <li className="text-black hover:bg-gray-700 p-2 rounded">
+                <Link to={"/patient/appointments"}>Register</Link>
+              </li>
+              <li className="text-black hover:bg-gray-700 p-2 rounded">
+                <Link to={"/"}>
+                  Login
+                </Link>
+              </li>
+            </ul>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default Header;
