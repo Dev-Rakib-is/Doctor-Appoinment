@@ -1,2 +1,29 @@
 @import "tailwindcss";
+
+/* dark Modde */
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+
+/* Slider bullet tsyle  */
+.swiper-pagination {
+  position: static !important; 
+  margin-top: 20px;            
+  text-align: center;
+}
+.swiper-pagination-bullet {
+  background: #000 !important; 
+  opacity: 0.5;
+}
+.dark .swiper-pagination-bullet {
+  background: #fff !important; 
+  opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #066D83 !important; 
+}
+.dark .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #066D83 !important; 
+}

@@ -1,15 +1,13 @@
-// src/layouts/DashboardLayout.jsx
-
 import { Link, Outlet } from "react-router-dom";
 import Header from "./Header";
 
 const DashboardLayout = () => {
-  return (
+  return (   
     <>
       <Header />
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen pt-16">
         {/* Sidebar */}
-        <aside className="w-64 bg-gray-800 text-white p-4 hidden md:block">
+        <aside className="md:w-50 lg:w-64 bg-gray-800 dark:bg-black/80  text-white p-4 hidden md:block overflow-y-auto">
           <h2 className="text-lg font-bold mb-6">Dashboard</h2>
           <ul className="space-y-2">
             <li className="hover:bg-gray-700 p-2 rounded text-base font-normal">
@@ -28,11 +26,11 @@ const DashboardLayout = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 bg-gray-100 p-6">
-          <Outlet /> {/* React Router Outlet */}
+        <main className="flex-1 bg-gray-100 dark:bg-black p-6 overflow-y-auto">
+          <Outlet /> 
         </main>
       </div>
-    </>
+    </> 
   );
 };
 

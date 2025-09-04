@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
+import { motion, scale } from "motion/react";
+
 
 const Darkmode = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -12,12 +14,13 @@ const Darkmode = () => {
     }
   }, [darkMode]);
   return (
-    <button
+    <motion.button
+    whileTap={{scale:0.95}}
       onClick={() => setDarkMode(!darkMode)}
-      className="p-3 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full cursor-pointer"
+      className="p-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full cursor-pointer outline-0"
     >
       {darkMode ? <Moon /> : <Sun />}
-    </button>
+    </motion.button>
   );
 };
 

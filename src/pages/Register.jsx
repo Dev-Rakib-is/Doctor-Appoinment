@@ -95,11 +95,11 @@ const Register = () => {
   return (
     <section>
       <div className="mx-auto w-full">
-        <h1 className="text-black text-center font-bold text-lg md:text-2xl pb-10">
+        <h1 className="text-black text-center font-bold text-lg md:text-2xl pb-10 dark:text-white">
           Create New Account
         </h1>
         <form
-          className="grid space-y-4 p-4 w-[90%] sm:w-[380px] md:w-[500px] lg:w-[600px] mx-auto"
+          className="grid space-y-4 p-4 w-[90%] sm:w-[380px] md:w-[500px] lg:w-[600px] mx-auto dark:bg-white rounded-lg mx-auto"
           onSubmit={handleSubmit}
         >
           {/* Name */}

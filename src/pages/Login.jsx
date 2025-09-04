@@ -53,13 +53,13 @@ const Login = () => {
   return (
     <>
       <section className="bg-transparent">
-        <div className="max-w-[350px] mx-auto px-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl pb-6 text-black font-normal text-center">
+        <div className="max-w-[350px] mx-auto px-2 ">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl pb-6 text-black font-normal text-center dark:text-white">
             Login to Your Account
           </h1>
           <form
             onSubmit={handleSubmit}
-            className="shadow bg-transparent border rounded border-black/10 grid space-y-6 p-8 justify-center"
+            className="shadow bg-transparent border rounded border-black/10 grid space-y-6 p-8 justify-center dark:bg-white"
           >
             <input
               type="email"
